@@ -145,6 +145,7 @@
 		79F9533D09FDC3A80041E345 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F9532B09FDC3A80041E345 /* ApplicationServices.framework */; };
 		79FB807209F74185006E7D11 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB807109F74185006E7D11 /* Carbon.framework */; };
 		ADEE5E18169C84DF006188C5 /* KMSState.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEE5E17169C84DF006188C5 /* KMSState.h */; };
+		BFA95DF31A641380007B2EA0 /* CurrentBuildSettings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BFA95DF21A64137F007B2EA0 /* CurrentBuildSettings.xcconfig */; };
 		CEB6FA0B13A696B200C8059F /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB6FA0A13A696B200C8059F /* libsasl2.dylib */; };
 /* End PBXBuildFile section */
 
@@ -443,6 +444,7 @@
 		79F9532B09FDC3A80041E345 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		79FB807109F74185006E7D11 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		ADEE5E17169C84DF006188C5 /* KMSState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSState.h; sourceTree = "<group>"; };
+		BFA95DF21A64137F007B2EA0 /* CurrentBuildSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CurrentBuildSettings.xcconfig; path = ../../CurrentBuildSettings.xcconfig; sourceTree = "<group>"; };
 		CE1AD3DF0A7E845A0083C01E /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE55A6620AD194740091C8AE /* zh_CN */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = zh_CN; path = zh_CN.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE94B9101463124A00F90408 /* es */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 		29B97314FDCFA39411CA2CEA /* Connection */ = {
 			isa = PBXGroup;
 			children = (
+				BFA95DF21A64137F007B2EA0 /* CurrentBuildSettings.xcconfig */,
 				22C7A9E316FCC8C300C88317 /* README.md */,
 				080E96DDFE201D6D7F000001 /* Public */,
 				79CFD8A009F705B400172CDD /* Private */,
@@ -1225,7 +1228,8 @@
 		279117E1178B5A86006BF857 /* CURLHandleTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = CURLHandleTests.octest;
+			name = CURLHandleTests.octest;
+			path = CURLHandleTests.xctest;
 			remoteRef = 279117E0178B5A86006BF857 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1285,6 +1289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA95DF31A641380007B2EA0 /* CurrentBuildSettings.xcconfig in Resources */,
 				797CC8C709F861770063FF9B /* Localizable.strings in Resources */,
 				791E83050B0EDAC90060E5FC /* error.png in Resources */,
 				791E83060B0EDAC90060E5FC /* finished.png in Resources */,
@@ -1913,7 +1918,9 @@
 		};
 		79CFD12909F702BF00172CDD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFA95DF21A64137F007B2EA0 /* CurrentBuildSettings.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1927,7 +1934,7 @@
 				GCC_PREFIX_HEADER = ConnectionKit/Connection_Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/CURLHandle/SFTP/libssh2/include\"";
 				INFOPLIST_FILE = "Resources/Framework-Info.plist";
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(MASTER_PRODUCT_NAME) Framework.framework/Versions/Current/Frameworks/";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1951,7 +1958,9 @@
 		};
 		79CFD12A09F702BF00172CDD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFA95DF21A64137F007B2EA0 /* CurrentBuildSettings.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -1965,7 +1974,7 @@
 				GCC_PREFIX_HEADER = ConnectionKit/Connection_Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/CURLHandle/SFTP/libssh2/include\"";
 				INFOPLIST_FILE = "Resources/Framework-Info.plist";
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(MASTER_PRODUCT_NAME) Framework.framework/Versions/Current/Frameworks/";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
