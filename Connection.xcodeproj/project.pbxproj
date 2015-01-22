@@ -145,7 +145,6 @@
 		79F9533D09FDC3A80041E345 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F9532B09FDC3A80041E345 /* ApplicationServices.framework */; };
 		79FB807209F74185006E7D11 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB807109F74185006E7D11 /* Carbon.framework */; };
 		ADEE5E18169C84DF006188C5 /* KMSState.h in Headers */ = {isa = PBXBuildFile; fileRef = ADEE5E17169C84DF006188C5 /* KMSState.h */; };
-		BFA95DF31A641380007B2EA0 /* CurrentBuildSettings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BFA95DF21A64137F007B2EA0 /* CurrentBuildSettings.xcconfig */; };
 		CEB6FA0B13A696B200C8059F /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB6FA0A13A696B200C8059F /* libsasl2.dylib */; };
 /* End PBXBuildFile section */
 
@@ -1228,7 +1227,6 @@
 		279117E1178B5A86006BF857 /* CURLHandleTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			name = CURLHandleTests.octest;
 			path = CURLHandleTests.xctest;
 			remoteRef = 279117E0178B5A86006BF857 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1289,7 +1287,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFA95DF31A641380007B2EA0 /* CurrentBuildSettings.xcconfig in Resources */,
 				797CC8C709F861770063FF9B /* Localizable.strings in Resources */,
 				791E83050B0EDAC90060E5FC /* error.png in Resources */,
 				791E83060B0EDAC90060E5FC /* finished.png in Resources */,
