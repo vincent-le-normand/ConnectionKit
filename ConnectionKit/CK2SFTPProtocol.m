@@ -161,8 +161,16 @@
     
     
     NSString* path = [self.class pathOfURLRelativeToHomeDirectory:url];
+	
+	// Escape special characters in path so libcurl doesn't misinterpret them
+	// Needing to escape here for the compiler makes this very confusing to read, sorry! Gist is:
+	// Backslashes need to be escaped *first* as double backslashes so that:
+	// Quotes can be escaped with a backslash
+	// Then overall path is quoted so libcurl knows to treat spaces as part of the path
+	path = [path stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+	path = [path stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
     
-    self = [self initWithCustomCommands:[NSArray arrayWithObject:[command stringByAppendingString:path]]
+    self = [self initWithCustomCommands:[NSArray arrayWithObject:[command stringByAppendingFormat:@"\"%@\"",path]]
                                 request:request
           createIntermediateDirectories:NO
                                  client:client
