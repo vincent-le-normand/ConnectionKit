@@ -9,7 +9,7 @@
 #import "CK2CURLBasedProtocol.h"
 
 
-@interface CK2FTPProtocol : CK2CURLBasedProtocol
+@interface CK2FTPProtocol : CK2CURLBasedProtocol 
 {
   @private
     BOOL    _atEnd;

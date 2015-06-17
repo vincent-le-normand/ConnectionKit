@@ -15,6 +15,9 @@
 #import <CURLHandle/CURLHandle.h>
 #import <libssh2_sftp.h>
 
+@interface CK2SFTPProtocol(NSURLAuthenticationChallengeSender) <NSURLAuthenticationChallengeSender>
+@end
+
 @implementation CK2SFTPProtocol
 
 + (BOOL)canHandleURL:(NSURL *)url;
@@ -381,7 +384,7 @@
                                                                          previousFailureCount:0
                                                                               failureResponse:nil
                                                                                         error:nil
-                                                                                       sender:nil];
+                                                                                       sender:self];
         
         _fingerprintSemaphore = dispatch_semaphore_create(0);   // must be setup before handing off to client
         
@@ -434,4 +437,18 @@
     dispatch_semaphore_signal(_fingerprintSemaphore);   // can't dispose of yet, as might not be currently waiting on it
 }
 
+@end
+
+@implementation CK2SFTPProtocol(NSURLAuthenticationChallengeSender)
+- (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2SFTPProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
+
+- (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2SFTPProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
+
+- (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2SFTPProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
 @end

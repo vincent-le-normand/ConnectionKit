@@ -22,6 +22,8 @@
 
 #pragma mark -
 
+@interface CK2FTPProtocol(NSURLAuthenticationChallengeSender) <NSURLAuthenticationChallengeSender>
+@end
 
 @implementation CK2FTPProtocol
 
@@ -421,7 +423,7 @@
                                                                                            previousFailureCount:_sslFailures
                                                                                                 failureResponse:nil
                                                                                                           error:error
-                                                                                                         sender:nil];
+                                                                                                         sender:self];
         
         [self.client protocol:self didReceiveChallenge:challenge completionHandler:^(CK2AuthChallengeDisposition disposition, NSURLCredential *credential) {
             
@@ -504,4 +506,19 @@
 
 - (SecTrustRef)serverTrust; { return _trust; }
 
+@end
+
+
+@implementation CK2FTPProtocol(NSURLAuthenticationChallengeSender)
+- (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2FTPProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
+
+- (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2FTPProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
+
+- (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2FTPProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
 @end

@@ -15,6 +15,8 @@
 #import <AppKit/AppKit.h>   // for NSImage
 #import <objc/runtime.h>
 
+@interface CK2CURLBasedProtocol(NSURLAuthenticationChallengeSender) <NSURLAuthenticationChallengeSender>
+@end
 
 @implementation CK2CURLBasedProtocol
 
@@ -399,7 +401,7 @@
                                                previousFailureCount:0
                                                failureResponse:nil
                                                error:nil
-                                               sender:nil];
+                                               sender:self];
     
     [self sendAuthChallenge:challenge];
     [challenge release];
@@ -438,7 +440,7 @@
                                                                       previousFailureCount:(challenge.previousFailureCount + 1)
                                                                       failureResponse:nil
                                                                       error:error
-                                                                      sender:nil];
+                                                                      sender:self];
                         
                         [self sendAuthChallenge:newChallenge];
                         [newChallenge release];
@@ -718,4 +720,18 @@
 // But we're now using the regular multi API, which seems to be working a treat
 + (BOOL)usesMultiHandle; { return YES; }
 
+@end
+
+@implementation CK2CURLBasedProtocol(NSURLAuthenticationChallengeSender)
+- (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2CURLBasedProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
+
+- (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2CURLBasedProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
+
+- (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+	NSLog(@"CK2CURLBasedProtocol - NSURLAuthenticationChallengeSender not implemented");
+}
 @end
