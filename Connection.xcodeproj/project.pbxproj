@@ -49,7 +49,7 @@
 		22C9CFBA170333A2004610FE /* ConnectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79CFD12609F702BE00172CDD /* ConnectionKit.framework */; };
 		22CC56F91509048E00F94154 /* PathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC56F81509048E00F94154 /* PathTests.m */; };
 		22CC578B1509068600F94154 /* ConnectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79CFD12609F702BE00172CDD /* ConnectionKit.framework */; };
-		22E67F1B171311C5001ECE34 /* ConnectionKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79CFD12609F702BE00172CDD /* ConnectionKit.framework */; };
+		22E67F1B171311C5001ECE34 /* ConnectionKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 79CFD12609F702BE00172CDD /* ConnectionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		22F6D112165A8A2200443CC9 /* URLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F6D102165A8A2200443CC9 /* URLTests.m */; };
 		22FEB6691680818800BB778B /* KMSTranscriptEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FEB6671680818800BB778B /* KMSTranscriptEntry.m */; };
 		271059521671334500E20511 /* DAVKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27448C371458100D00EB086F /* DAVKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -1139,7 +1139,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					279117FA178B5C64006BF857 = {
 						TestTargetID = 79CFD12509F702BE00172CDD;
@@ -1607,6 +1607,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.UnitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1632,6 +1633,7 @@
 					"\"$(SRCROOT)/CurlHandle/SFTP\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.UnitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1664,6 +1666,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "ProfilingTester/ProfilingTester-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1690,6 +1693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "ProfilingTester/ProfilingTester-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1732,6 +1736,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ConnectionKitUI/ConnectionKitUI-Info.plist";
 				INSTALL_PATH = "@rpath";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -1768,6 +1773,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ConnectionKitUI/ConnectionKitUI-Info.plist";
 				INSTALL_PATH = "@rpath";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -1887,6 +1893,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "AuthTester/AuthTester-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.connection.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1910,6 +1917,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "AuthTester/AuthTester-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.connection.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1947,6 +1955,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dlsxtreme.connection;
 				PRODUCT_NAME = ConnectionKit;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SKIP_INSTALL = YES;
@@ -1987,6 +1996,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dlsxtreme.connection;
 				PRODUCT_NAME = ConnectionKit;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SKIP_INSTALL = YES;
@@ -1999,6 +2009,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_TESTABILITY = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
