@@ -1941,7 +1941,7 @@
 				GCC_PREFIX_HEADER = ConnectionKit/Connection_Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/CURLHandle/SFTP/libssh2/include\"";
 				INFOPLIST_FILE = "Resources/Framework-Info.plist";
-				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(MASTER_PRODUCT_NAME) Framework.framework/Versions/Current/Frameworks/";
+				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(PB_FRAMEWORK_NAME)framework/Versions/Current/Frameworks/";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1982,7 +1982,7 @@
 				GCC_PREFIX_HEADER = ConnectionKit/Connection_Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/CURLHandle/SFTP/libssh2/include\"";
 				INFOPLIST_FILE = "Resources/Framework-Info.plist";
-				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(MASTER_PRODUCT_NAME) Framework.framework/Versions/Current/Frameworks/";
+				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(PB_FRAMEWORK_NAME)framework/Versions/Current/Frameworks/";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
