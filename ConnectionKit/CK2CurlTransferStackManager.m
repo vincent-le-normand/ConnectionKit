@@ -12,7 +12,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _transferStack = [CURLTransferStack transferStackWithDelegate:nil delegateQueue:nil];
+        _transferStack = [[CURLTransferStack transferStackWithDelegate:nil delegateQueue:nil] retain];
     }
     return self;
 }
@@ -21,6 +21,8 @@
     // We're being torn down, so figure now is the time to invalidate transfer stack. Crude, but
     // there you go.
     [self.transferStack finishTransfersAndInvalidate];
+	
+	[_transferStack release];
     
     [super dealloc];
 }
