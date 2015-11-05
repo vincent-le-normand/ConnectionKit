@@ -15,9 +15,6 @@
 #import <AppKit/AppKit.h>   // for NSImage
 #import <objc/runtime.h>
 
-@interface CK2CURLBasedProtocol(NSURLAuthenticationChallengeSender) <NSURLAuthenticationChallengeSender>
-@end
-
 @implementation CK2CURLBasedProtocol
 
 - (id)initWithRequest:(NSURLRequest *)request client:(id <CK2ProtocolClient>)client completionHandler:(void (^)(NSError *))handler;
