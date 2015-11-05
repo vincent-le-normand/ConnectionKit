@@ -721,18 +721,18 @@
 + (BOOL)usesMultiHandle; { return YES; }
 
 #pragma mark NSURLAuthenticationChallengeSender
-
-- (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    [self doesNotRecognizeSelector:_cmd];
-}
-
-- (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    [self doesNotRecognizeSelector:_cmd];
-}
-
-- (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    [self doesNotRecognizeSelector:_cmd];
-}
+//
+//- (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+//    [self doesNotRecognizeSelector:_cmd];
+//}
+//
+//- (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+//    [self doesNotRecognizeSelector:_cmd];
+//}
+//
+//- (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+//    [self doesNotRecognizeSelector:_cmd];
+//}
 
 @end
 

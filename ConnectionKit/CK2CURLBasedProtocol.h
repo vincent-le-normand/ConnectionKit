@@ -18,7 +18,7 @@
  satisfy the compiler. So you can pass in an instance of this class, and it will throw if any of the
  messages are attempted.
  */
-@interface CK2CURLBasedProtocol : CK2Protocol <CURLTransferDelegate, NSURLAuthenticationChallengeSender>
+@interface CK2CURLBasedProtocol : CK2Protocol <CURLTransferDelegate>
 {
     CURLTransfer    *_transfer;
     BOOL            _cancelled;
@@ -62,4 +62,7 @@
 - (void)popCompletionHandlerByExecutingWithError:(NSError *)error;
 - (void)reportToProtocolWithError:(NSError*)error;
 
+@end
+
+@interface CK2CURLBasedProtocol(NSURLAuthenticationChallengeSender)<NSURLAuthenticationChallengeSender>
 @end
