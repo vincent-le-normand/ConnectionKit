@@ -720,6 +720,20 @@
 // But we're now using the regular multi API, which seems to be working a treat
 + (BOOL)usesMultiHandle; { return YES; }
 
+#pragma mark NSURLAuthenticationChallengeSender
+
+- (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
 @end
 
 @implementation CK2CURLBasedProtocol(NSURLAuthenticationChallengeSender)
