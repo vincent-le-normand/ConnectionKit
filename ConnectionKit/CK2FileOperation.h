@@ -50,6 +50,14 @@ typedef NS_ENUM(NSInteger, CK2FileOperationState) {
     NSError                 *_error;
 }
 
+- (id)init NS_UNAVAILABLE;
+
+- (id)initWithURL:(NSURL *)url
+ errorDescription:(NSString *)errorDescription
+		  manager:(CK2FileManager *)manager
+completionHandler:(void (^)(NSError *))completionBlock
+		callbacks:(CK2FileOperationCallbacks *)callbacks NS_DESIGNATED_INITIALIZER;
+
 /**
  @return a deep copy of the original connection request.
  
