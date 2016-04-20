@@ -86,3 +86,9 @@
 
 /* status */
 "Uploading %@" = "%@ をアップロード中";
+
+/* error descrption */
+"The folder “%@” could not be accessed." = "フォルダの \"％@\"はアクセスできませんでした。";
+
+/* error descrption */
+"The server could not be accessed." = "サーバーにアクセスできませんでした。";

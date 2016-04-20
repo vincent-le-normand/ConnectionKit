@@ -86,3 +86,9 @@
 
 /* status */
 "Uploading %@" = "Chargement de %@";
+
+/* error descrption */
+"The folder “%@” could not be accessed." = "Il n'a pas été possible d'accéder au dossier “%@”.";
+
+/* error descrption */
+"The server could not be accessed." = "Il n'a pas été possible d'accéder au server.";

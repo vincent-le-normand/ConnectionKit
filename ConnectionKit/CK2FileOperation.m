@@ -109,12 +109,12 @@ callbacks:(CK2FileOperationCallbacks *)callbacks;
     NSString *description;
     if (name.length)
     {
-        description = [NSString stringWithFormat:NSLocalizedString(@"The folder “%@” could not be accessed.", "error descrption"),
+		description = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"The folder “%@” could not be accessed.",nil,[NSBundle bundleForClass:[self class]], "error descrption"),
                        url.lastPathComponent];
     }
     else
     {
-        description = NSLocalizedString(@"The server could not be accessed.", "error description");
+        description = NSLocalizedStringFromTableInBundle(@"The server could not be accessed.",nil,[NSBundle bundleForClass:[self class]], "error description");
     }
     
     CK2FileOperationCallbacks *callbacks = [CK2FileOperationCallbacks callbacksWithProtocolCreator:^CK2Protocol *(CK2FileOperation *fileOp, Class protocolClass) {

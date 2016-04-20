@@ -86,3 +86,9 @@
 
 /* status */
 "Uploading %@" = "Hochladen von %@";
+
+/* error descrption */
+"The folder “%@” could not be accessed." = "Der Ordner \"%@\" konnte nicht zugegriffen werden.";
+
+/* error descrption */
+"The server could not be accessed." = "Der Server konnte nicht zugegriffen werden.";
