@@ -1939,7 +1939,10 @@
 				GCC_PFE_FILE_C_DIALECTS = "objective-c c++ objective-c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ConnectionKit/Connection_Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/CURLHandle/SFTP/libssh2/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/CurlHandle/SFTP/libssh2/include\"",
+					"\"$(SOURCE_ROOT)/CurlHandle/CURLHandleSource/built/include/curl-$(CURRENT_ARCH)\"",
+				);
 				INFOPLIST_FILE = "Resources/Framework-Info.plist";
 				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(PB_FRAMEWORK_NAME).framework/Versions/Current/Frameworks/";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
@@ -1954,6 +1957,10 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-Xlinker",
+					"-U",
+					"-Xlinker",
+					_objc_readClassPair,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dlsxtreme.connection;
 				PRODUCT_NAME = ConnectionKit;
@@ -1980,7 +1987,10 @@
 				GCC_PFE_FILE_C_DIALECTS = "objective-c c++ objective-c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ConnectionKit/Connection_Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/CURLHandle/SFTP/libssh2/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/CurlHandle/SFTP/libssh2/include\"",
+					"\"$(SOURCE_ROOT)/CurlHandle/CURLHandleSource/built/include/curl-$(CURRENT_ARCH)\"",
+				);
 				INFOPLIST_FILE = "Resources/Framework-Info.plist";
 				INSTALL_PATH = "${INTEGO_BUNLE_PATH}/${MASTER_PRODUCT_NAME}.bundle/Contents/Frameworks/$(PB_FRAMEWORK_NAME).framework/Versions/Current/Frameworks/";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
@@ -1995,6 +2005,10 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-Xlinker",
+					"-U",
+					"-Xlinker",
+					_objc_readClassPair,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dlsxtreme.connection;
 				PRODUCT_NAME = ConnectionKit;
@@ -2015,7 +2029,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-U",
+					"-Xlinker",
+					_objc_readClassPair,
+				);
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -2028,7 +2048,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-U",
+					"-Xlinker",
+					_objc_readClassPair,
+				);
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};

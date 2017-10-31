@@ -33,6 +33,15 @@
 
 @interface CK2FileOperation () <CK2ProtocolClient>
 
+<<<<<<< HEAD
+=======
+- (id)initWithURL:(NSURL *)url
+ errorDescription:(NSString *)errorDescription
+          manager:(CK2FileManager *)manager
+completionHandler:(void (^)(NSError *))completionBlock
+callbacks:(CK2FileOperationCallbacks *)callbacks;
+
+>>>>>>> 46916510dce88c40992c32944813e7bd178cb50a
 @property(readonly) CK2FileManager *fileManager;    // goes to nil once finished/failed
 @property (readwrite) int64_t countOfBytesWritten;
 @property (readwrite) int64_t countOfBytesExpectedToWrite;
@@ -386,6 +395,9 @@ callbacks:(CK2FileOperationCallbacks *)callbacks;
     // within the queue.
     // It's still inherently a bit dangerous though, as the client could change it on a different
     // queue, or could have specified a non-serial delegate queue.
+    //
+    // This crashes randomly quite frequently when canceling out of the private key password
+    // input dialog window. -AK, June 30, 2017
     [manager.delegateQueue addOperationWithBlock:^{
         id <CK2FileManagerDelegate> delegate = manager.delegate;
         if (!selector || [delegate respondsToSelector:selector]) {
@@ -653,10 +665,13 @@ callbacks:(CK2FileOperationCallbacks *)callbacks;
     // Provide ancestry and other fairly generic keys on-demand
     [self.class setResourceValueBlocksForURL:url protocolClass:protocol.class];
     
-    
-        [self tryToMessageDelegateSelector:NULL usingBlock:^(id<CK2FileManagerDelegate> delegate) {
-            if (_enumerationBlock) _enumerationBlock(url);
-        }];
+    // Capture enumeration block ivar here. The queues used for managing ivars, and communicating
+    // with delegate are independent, so if we don't capture, it's quite possible the ivar has been
+    // cleared out by the time our message goes through
+    void (^handler)(NSURL *) = _enumerationBlock;
+    [self tryToMessageDelegateSelector:NULL usingBlock:^(id<CK2FileManagerDelegate> delegate) {
+        if (handler) handler(url);
+    }];
     
     // It seems poor security to vend out passwords here, so have a quick sanity check
     if (CFURLGetByteRangeForComponent((CFURLRef)url, kCFURLComponentPassword, NULL).location != kCFNotFound)
