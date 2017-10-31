@@ -2035,7 +2035,6 @@
 					"-Xlinker",
 					_objc_readClassPair,
 				);
-				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -2054,7 +2053,6 @@
 					"-Xlinker",
 					_objc_readClassPair,
 				);
-				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};
