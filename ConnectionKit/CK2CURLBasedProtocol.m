@@ -15,10 +15,13 @@
 #import <AppKit/AppKit.h>   // for NSImage
 #import <objc/runtime.h>
 
-@implementation CK2CURLBasedProtocol
+@implementation CK2CURLBasedProtocol {
+	dispatch_queue_t _transferQueue;
+}
 
 - (id)initWithRequest:(NSURLRequest *)request client:(id <CK2ProtocolClient>)client completionHandler:(void (^)(NSError *))handler;
 {
+	_transferQueue = dispatch_queue_create("com.connection.CK2CURLBasedProtocol", 0);
     if (self = [self initWithRequest:request client:client])
     {
         [self pushCompletionHandler:^(NSError *error) {
@@ -38,9 +41,10 @@
             {
                 [self reportToProtocolWithError:error];
             }
-            
-            // Clean up transfer
-            [_transfer release]; _transfer = nil;
+			dispatch_sync(_transferQueue, ^{
+				// Clean up transfer
+				[_transfer release]; _transfer = nil;
+			});
         }];
     }
     
@@ -378,7 +382,10 @@
 
 - (void)dealloc;
 {
-    [_transfer release];
+	dispatch_sync(_transferQueue, ^{
+		[_transfer release];
+	});
+	dispatch_release(_transferQueue);
     [_user release];
     [_completionHandler release];
     [_dataBlock release];
@@ -495,8 +502,10 @@
             }
         }
         
-        _transfer = [[multi transferWithRequest:request credential:credential delegate:self] retain];
-        [_transfer resume];
+		dispatch_sync(_transferQueue, ^{
+			_transfer = [[multi transferWithRequest:request credential:credential delegate:self] retain];
+			[_transfer resume];
+		});
     }
     else
     {
@@ -526,8 +535,10 @@
             
             if (_cancelled) return;
             
-            _transfer = [transferToUse retain];
-            [_transfer sendSynchronousRequest:request credential:credential delegate:self];
+			dispatch_sync(_transferQueue, ^{
+				_transfer = [transferToUse retain];
+				[_transfer sendSynchronousRequest:request credential:credential delegate:self];
+			});
         });
     }
 }
@@ -541,7 +552,9 @@
 {
     // Mark as cancelled before actually cancelling so _cancelled has to be YES for any other transfers on the queue
     _cancelled = YES;
-    [_transfer cancel];
+	dispatch_sync(_transferQueue, ^{
+		[_transfer cancel];
+	});
 }
 
 #pragma mark Progress
