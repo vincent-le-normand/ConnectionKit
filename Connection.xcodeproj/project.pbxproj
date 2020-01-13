@@ -1139,7 +1139,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					279117FA178B5C64006BF857 = {
 						TestTargetID = 79CFD12509F702BE00172CDD;
@@ -1154,7 +1154,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
 				en,
 				ja,
 				fr,
