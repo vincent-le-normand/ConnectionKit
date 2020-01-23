@@ -24,7 +24,7 @@
 
 @implementation CK2SSHHostFingerprintProtectionSpace
 
-- initWithHost:(NSString *)host match:(enum curl_khmatch)match publicKey:(NSData *)key type:(CK2KnownHostType)keyType;
+- initWithHost:(NSString *)host match:(CK2KnownHostMatch)match publicKey:(NSData *)key type:(CK2KnownHostType)keyType;
 {
     if (self = [self initWithHost:host port:0 protocol:@"ssh" realm:nil authenticationMethod:CK2AuthenticationMethodHostFingerprint])
     {

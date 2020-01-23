@@ -361,7 +361,7 @@
         if (foundKey->len == 0)  // base64 encoded
         {
             NSString *key64 = [[NSString alloc] initWithCString:foundKey->key encoding:NSASCIIStringEncoding];
-            key = [[NSData alloc] initWithBase64Encoding:key64];
+            key = [[NSData alloc] initWithBase64EncodedString:key64 options:0];
             [key64 release];
         }
         else
@@ -370,9 +370,9 @@
         }
         
         NSURLProtectionSpace *space = [NSURLProtectionSpace ck2_protectionSpaceWithHost:self.request.URL.host
-                                                                         knownHostMatch:match
+                                                                         knownHostMatch:(CK2KnownHostMatch)match
                                                                               publicKey:key
-                                                                                   type:foundKey->keytype];
+                                                                                   type:(CK2KnownHostType)foundKey->keytype];
         
         [key release];
         

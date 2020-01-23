@@ -193,7 +193,7 @@
         }
         else
         {
-            NSLog(@"Error getting kind for URL %@: %s", [self absoluteString], GetMacOSStatusCommentString(status));
+			NSLog(@"Error getting kind for URL %@: OSStatus : %d", [self absoluteString], (int)status);
         }
     }
     return @"";

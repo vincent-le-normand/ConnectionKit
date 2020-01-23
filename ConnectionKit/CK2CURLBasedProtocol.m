@@ -220,8 +220,7 @@
                                 [CK2FileManager setTemporaryResourceValue:[self.class URLWithPath:path relativeToURL:directoryURL] forKey:aKey inURL:aURL];
                             }
                         }
-                        else if (&NSURLFileResourceTypeKey &&   // not available till 10.7
-                                 [aKey isEqualToString:NSURLFileResourceTypeKey])
+                        else if ([aKey isEqualToString:NSURLFileResourceTypeKey])
                         {
                                 NSString *typeValue;
                                 switch ([type integerValue])
@@ -250,7 +249,7 @@
 
                                 [CK2FileManager setTemporaryResourceValue:typeValue forKey:aKey inURL:aURL];
                         }
-                        else if (&NSURLFileSecurityKey && [aKey isEqualToString:NSURLFileSecurityKey])
+                        else if ([aKey isEqualToString:NSURLFileSecurityKey])
                         {
                                 CFFileSecurityRef security = CFFileSecurityCreate(NULL);
 
@@ -370,11 +369,9 @@
                         NSURLIsSymbolicLinkKey,
                         NSURLNameKey,
                         NSURLFileSizeKey,
+						NSURLFileResourceTypeKey,
+						NSURLFileSecurityKey,
                         CK2URLSymbolicLinkDestinationKey];
-    
-    if (&NSURLFileResourceTypeKey) result = [result arrayByAddingObject:NSURLFileResourceTypeKey];
-    if (&NSURLFileSecurityKey) result = [result arrayByAddingObject:NSURLFileSecurityKey];
-    
     return result;
 }
 
@@ -480,11 +477,13 @@
     request = [self.client protocol:self willSendRequest:request redirectResponse:nil];
     
     CURLTransferStack* multi = nil;
+	#pragma clang diagnostic push
+	#pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([request respondsToSelector:@selector(ck2_multi)])  // should only be a testing/debugging feature
     {
         multi = [request performSelector:@selector(ck2_multi)]; // typically this is nil, meaning use the default, but we can override it for test purposes
     }
-    
+    #pragma clang diagnostic pop
     _totalBytesWritten = 0;
 
     if ([[self class] usesMultiHandle])

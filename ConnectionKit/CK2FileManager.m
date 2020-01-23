@@ -310,11 +310,13 @@ NSString * const CK2URLSymbolicLinkDestinationKey = @"CK2URLSymbolicLinkDestinat
     return [CK2FileOperation class];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 - (void)cancelOperation:(CK2FileOperation *)operation;
 {
     [operation cancel];
 }
-
+#pragma clang diagnostic pop
 @end
 
 
@@ -429,11 +431,13 @@ NSString * const CK2URLSymbolicLinkDestinationKey = @"CK2URLSymbolicLinkDestinat
     // Swizzle so getter method includes cache in its search
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+		#pragma clang diagnostic push
+		#pragma clang diagnostic ignored "-Wundeclared-selector"
         Class class = NSURL.class;
         Method originalMethod = class_getInstanceMethod(class, @selector(getResourceValue:forKey:error:));
         Method overrideMethod = class_getInstanceMethod(class, @selector(ck2_getResourceValue:forKey:error:));
         method_exchangeImplementations(originalMethod, overrideMethod);
+		#pragma clang diagnostic pop
     });
 }
 
