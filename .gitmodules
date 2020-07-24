@@ -1,6 +1,6 @@
 [submodule "DAVKit"]
 	path = DAVKit
-	url = https://github.com/karelia/DAVKit.git
+	url = git@github.com:Noodlesoft/DAVKit.git
 [submodule "CurlHandle"]
 	path = CurlHandle
-	url = https://github.com/karelia/CurlHandle.git
+	url = git@github.com:Noodlesoft/CurlHandle.git
