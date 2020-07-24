@@ -1,6 +1,8 @@
 [submodule "DAVKit"]
+	branch = noodlesoft
 	path = DAVKit
 	url = git@github.com:Noodlesoft/DAVKit.git
 [submodule "CurlHandle"]
+	branch = noodlesoft
 	path = CurlHandle
 	url = git@github.com:Noodlesoft/CurlHandle.git
