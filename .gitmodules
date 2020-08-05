@@ -1,8 +1,8 @@
 [submodule "DAVKit"]
 	branch = master
 	path = DAVKit
-	url=git@github.com:vincent-le-normand/DAVKit.git
+url=https://github.com/vincent-le-normand/DAVKit.git
 [submodule "CurlHandle"]
 	branch = master
 	path = CurlHandle
-	url=git@github.com:vincent-le-normand/CurlHandle.git
+	url=https://github.com/vincent-le-normand/CurlHandle.git
