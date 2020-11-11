@@ -15,13 +15,11 @@
 #import <AppKit/AppKit.h>   // for NSImage
 #import <objc/runtime.h>
 
-@implementation CK2CURLBasedProtocol {
-	dispatch_queue_t _transferQueue;
-}
+
+@implementation CK2CURLBasedProtocol
 
 - (id)initWithRequest:(NSURLRequest *)request client:(id <CK2ProtocolClient>)client completionHandler:(void (^)(NSError *))handler;
 {
-	_transferQueue = dispatch_queue_create("com.connection.CK2CURLBasedProtocol", 0);
     if (self = [self initWithRequest:request client:client])
     {
         [self pushCompletionHandler:^(NSError *error) {
@@ -41,10 +39,9 @@
             {
                 [self reportToProtocolWithError:error];
             }
-			dispatch_sync(_transferQueue, ^{
-				// Clean up transfer
-				[_transfer release]; _transfer = nil;
-			});
+            
+            // Clean up transfer
+            [_transfer release]; _transfer = nil;
         }];
     }
     
@@ -220,7 +217,8 @@
                                 [CK2FileManager setTemporaryResourceValue:[self.class URLWithPath:path relativeToURL:directoryURL] forKey:aKey inURL:aURL];
                             }
                         }
-                        else if ([aKey isEqualToString:NSURLFileResourceTypeKey])
+                        else if (&NSURLFileResourceTypeKey &&   // not available till 10.7
+                                 [aKey isEqualToString:NSURLFileResourceTypeKey])
                         {
                                 NSString *typeValue;
                                 switch ([type integerValue])
@@ -249,7 +247,7 @@
 
                                 [CK2FileManager setTemporaryResourceValue:typeValue forKey:aKey inURL:aURL];
                         }
-                        else if ([aKey isEqualToString:NSURLFileSecurityKey])
+                        else if (&NSURLFileSecurityKey && [aKey isEqualToString:NSURLFileSecurityKey])
                         {
                                 CFFileSecurityRef security = CFFileSecurityCreate(NULL);
 
@@ -369,9 +367,11 @@
                         NSURLIsSymbolicLinkKey,
                         NSURLNameKey,
                         NSURLFileSizeKey,
-						NSURLFileResourceTypeKey,
-						NSURLFileSecurityKey,
                         CK2URLSymbolicLinkDestinationKey];
+    
+    if (&NSURLFileResourceTypeKey) result = [result arrayByAddingObject:NSURLFileResourceTypeKey];
+    if (&NSURLFileSecurityKey) result = [result arrayByAddingObject:NSURLFileSecurityKey];
+    
     return result;
 }
 
@@ -379,10 +379,7 @@
 
 - (void)dealloc;
 {
-	dispatch_sync(_transferQueue, ^{
-		[_transfer release];
-	});
-	dispatch_release(_transferQueue);
+    [_transfer release];
     [_user release];
     [_completionHandler release];
     [_dataBlock release];
@@ -477,13 +474,11 @@
     request = [self.client protocol:self willSendRequest:request redirectResponse:nil];
     
     CURLTransferStack* multi = nil;
-	#pragma clang diagnostic push
-	#pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([request respondsToSelector:@selector(ck2_multi)])  // should only be a testing/debugging feature
     {
         multi = [request performSelector:@selector(ck2_multi)]; // typically this is nil, meaning use the default, but we can override it for test purposes
     }
-    #pragma clang diagnostic pop
+    
     _totalBytesWritten = 0;
 
     if ([[self class] usesMultiHandle])
@@ -501,10 +496,8 @@
             }
         }
         
-		dispatch_sync(_transferQueue, ^{
-			_transfer = [[multi transferWithRequest:request credential:credential delegate:self] retain];
-			[_transfer resume];
-		});
+        _transfer = [[multi transferWithRequest:request credential:credential delegate:self] retain];
+        [_transfer resume];
     }
     else
     {
@@ -534,10 +527,8 @@
             
             if (_cancelled) return;
             
-			dispatch_sync(_transferQueue, ^{
-				_transfer = [transferToUse retain];
-				[_transfer sendSynchronousRequest:request credential:credential delegate:self];
-			});
+            _transfer = [transferToUse retain];
+            [_transfer sendSynchronousRequest:request credential:credential delegate:self];
         });
     }
 }
@@ -551,9 +542,7 @@
 {
     // Mark as cancelled before actually cancelling so _cancelled has to be YES for any other transfers on the queue
     _cancelled = YES;
-	dispatch_sync(_transferQueue, ^{
-		[_transfer cancel];
-	});
+    [_transfer cancel];
 }
 
 #pragma mark Progress
@@ -730,31 +719,17 @@
 + (BOOL)usesMultiHandle; { return YES; }
 
 #pragma mark NSURLAuthenticationChallengeSender
-//
-//- (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-//    [self doesNotRecognizeSelector:_cmd];
-//}
-//
-//- (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-//    [self doesNotRecognizeSelector:_cmd];
-//}
-//
-//- (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-//    [self doesNotRecognizeSelector:_cmd];
-//}
 
-@end
-
-@implementation CK2CURLBasedProtocol(NSURLAuthenticationChallengeSender)
 - (void)useCredential:(NSURLCredential *)credential forAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	NSLog(@"CK2CURLBasedProtocol - NSURLAuthenticationChallengeSender not implemented");
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 - (void)continueWithoutCredentialForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	NSLog(@"CK2CURLBasedProtocol - NSURLAuthenticationChallengeSender not implemented");
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 - (void)cancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	NSLog(@"CK2CURLBasedProtocol - NSURLAuthenticationChallengeSender not implemented");
+    [self doesNotRecognizeSelector:_cmd];
 }
+
 @end
