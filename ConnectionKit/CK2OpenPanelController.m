@@ -1125,7 +1125,7 @@
     [_pathFieldController beginSheetModalForWindow:[self openPanel] completionHandler:
      ^(NSInteger result)
      {
-         if (result == NSOKButton)
+		if (result == NSModalResponseOK)
          {
              NSString   *path;
              

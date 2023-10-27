@@ -124,15 +124,15 @@
 
 - (void)keyDown:(NSEvent *)event
 {
-    if ([event type] == NSKeyDown)
+	if ([event type] == NSEventTypeKeyDown)
     {
         NSString    *string;
         NSUInteger  flags;
         
         string = [event characters];
-        flags = [event modifierFlags] & NSDeviceIndependentModifierFlagsMask;
+		flags = [event modifierFlags] & NSEventModifierFlagDeviceIndependentFlagsMask;
         
-        if (([string isEqual:@"/"] || [string isEqual:@"~"]) && ((flags & NSCommandKeyMask) == 0))
+		if (([string isEqual:@"/"] || [string isEqual:@"~"]) && ((flags & NSEventModifierFlagCommand) == 0))
         {
             // Let the window handle it
             [[self nextResponder] keyDown:event];

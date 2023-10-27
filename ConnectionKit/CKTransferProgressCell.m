@@ -118,7 +118,7 @@ NSSize CKLimitMaxWidthHeight(NSSize ofSize, CGFloat toMaxDimension);
 
         [sErrorImage drawInRect:centered
 					   fromRect:NSZeroRect
-					  operation:NSCompositeSourceOver
+					  operation:NSCompositingOperationSourceOver
 					   fraction:1.0
                  respectFlipped:YES
                           hints:nil];
@@ -186,7 +186,7 @@ NSSize CKLimitMaxWidthHeight(NSSize ofSize, CGFloat toMaxDimension);
         
 		[sFinishedImage drawInRect:centered
 						  fromRect:NSZeroRect
-						 operation:NSCompositeSourceOver
+						 operation:NSCompositingOperationSourceOver
 						  fraction:1.0
                     respectFlipped:YES
                              hints:nil];

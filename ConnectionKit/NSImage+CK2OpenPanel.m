@@ -135,11 +135,11 @@
             {
                 NSRect  rect;
                 
-                [image drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+		[image drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
                
                 rect.origin = NSZeroPoint;
                 rect.size = [blockRep size];
-                [badgeImage drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+		[badgeImage drawInRect:rect fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
             }];
 }
 

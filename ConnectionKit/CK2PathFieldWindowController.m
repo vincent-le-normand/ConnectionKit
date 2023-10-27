@@ -47,7 +47,7 @@
 {
     [sheet orderOut:self];
  
-    if (returnCode == NSOKButton)
+	if (returnCode == NSModalResponseOK)
     {
         [self setStringValue:[_field stringValue]];
     }
@@ -64,12 +64,12 @@
 
 - (IBAction)cancel:(id)sender
 {
-    [NSApp endSheet:[self window] returnCode:NSCancelButton];
+	[NSApp endSheet:[self window] returnCode:NSModalResponseCancel];
 }
 
 - (IBAction)go:(id)sender
 {
-    [NSApp endSheet:[self window] returnCode:NSOKButton];
+	[NSApp endSheet:[self window] returnCode:NSModalResponseOK];
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification

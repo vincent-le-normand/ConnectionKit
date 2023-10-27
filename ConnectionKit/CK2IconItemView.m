@@ -70,7 +70,7 @@
 {
     _textCell = [[NSTextFieldCell alloc] initTextCell:@""];
     [_textCell setEditable:NO];
-    [_textCell setAlignment:NSCenterTextAlignment];
+	[_textCell setAlignment:NSTextAlignmentCenter];
     [_textCell setLineBreakMode:NSLineBreakByWordWrapping];
     [_textCell setTruncatesLastVisibleLine:YES];
 }
@@ -300,12 +300,12 @@
             [path fill];
         }
         
-        [[url ck2_icon] drawInRect:iconRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+		[[url ck2_icon] drawInRect:iconRect fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
     
         if (![item isEnabled])
         {
             [[NSColor colorWithDeviceWhite:1.0 alpha:0.5] set];
-            NSRectFillUsingOperation(iconRect, NSCompositeSourceAtop);
+			NSRectFillUsingOperation(iconRect, NSCompositingOperationSourceAtop);
         }
     }
     
