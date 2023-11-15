@@ -88,7 +88,7 @@
 
     resultCode = [NSApp runModalForWindow:[self window]];
 
-    return ((resultCode == NSOKButton) && (_error == nil));
+	return ((resultCode == NSModalResponseOK) && (_error == nil));
 }
 
 
@@ -113,7 +113,7 @@
 
 - (void)doIt:sender
 {
-    [self endWithCode:NSOKButton];
+	[self endWithCode:NSModalResponseOK];
 }
 
 - (IBAction)ok:(id)sender
@@ -136,13 +136,13 @@
                   
              [self setError:blockError];
              [self setFolderURL:url];
-             [self endWithCode:NSOKButton];
-             
+             [self endWithCode:NSModalResponseOK];
+
              [_okButton setEnabled:YES];
          
          // It seems that the run loop doesn't wake up after ending the modal session from a block (also happens with
          // -performSelectorOnMainThread:) so we create a fake event here to "jiggle its rat" (rdar://13079612)
-         event = [NSEvent otherEventWithType:NSApplicationDefined location:NSZeroPoint modifierFlags:0 timestamp:0 windowNumber:[[self window] windowNumber] context:NULL subtype:NSApplicationDefined data1:0 data2:0];
+         event = [NSEvent otherEventWithType:NSEventTypeApplicationDefined location:NSZeroPoint modifierFlags:0 timestamp:0 windowNumber:[[self window] windowNumber] context:NULL subtype:NSEventTypeApplicationDefined data1:0 data2:0];
          [NSApp postEvent:event atStart:YES];
 
      }] retain];
@@ -153,7 +153,7 @@
 - (IBAction)cancel:(id)sender
 {
     [_operation cancel];
-    [self endWithCode:NSCancelButton];
+	[self endWithCode:NSModalResponseCancel];
 }
 
 @end

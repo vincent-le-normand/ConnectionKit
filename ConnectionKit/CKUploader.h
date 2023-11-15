@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "CK2FileManager.h"
-#import "CKTransferRecord.h"
+#import <ConnectionKit/CK2FileManager.h>
+#import <ConnectionKit/CKTransferRecord.h>
 
 
 enum {

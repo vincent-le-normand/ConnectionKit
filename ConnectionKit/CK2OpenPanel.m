@@ -63,7 +63,7 @@
 
 - (id)init
 {
-    if ((self = [super initWithContentRect:NSMakeRect(0.0, 0.0, 525.0, 350.0) styleMask:NSTitledWindowMask | NSResizableWindowMask backing:NSBackingStoreBuffered defer:NO]) != nil)
+	if ((self = [super initWithContentRect:NSMakeRect(0.0, 0.0, 525.0, 350.0) styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskResizable backing:NSBackingStoreBuffered defer:NO]) != nil)
     {
         NSRect  rect;
         NSView  *view;
@@ -261,19 +261,19 @@
             }
         }
     }
-    [self endWithCode:NSFileHandlingPanelOKButton];
+	[self endWithCode:NSModalResponseOK];
 }
 
 - (IBAction)cancel:(id)sender
 {
-    [self endWithCode:NSFileHandlingPanelCancelButton];
+	[self endWithCode:NSModalResponseCancel];
 }
 
 - (BOOL)performKeyEquivalent:(NSEvent *)event
 {
     // Certain keys, like up and down arrows, will trigger this method being called even if the command key isn't down
     // so we need to check here.
-    if (([event modifierFlags] & NSDeviceIndependentModifierFlagsMask & NSCommandKeyMask) != 0)
+	if (([event modifierFlags] & NSEventModifierFlagDeviceIndependentFlagsMask & NSEventModifierFlagCommand) != 0)
     {
         NSString    *string;
         
@@ -337,15 +337,15 @@
 
 - (void)keyDown:(NSEvent *)event
 {
-    if ([event type] == NSKeyDown)
+	if ([event type] == NSEventTypeKeyDown)
     {
         NSString    *string;
         NSUInteger  flags;
         
         string = [event characters];
-        flags = [event modifierFlags] & NSDeviceIndependentModifierFlagsMask;
+		flags = [event modifierFlags] & NSEventModifierFlagDeviceIndependentFlagsMask;
 
-        if (([string isEqual:@"/"] || [string isEqual:@"~"]) && ((flags & NSCommandKeyMask) == 0))
+		if (([string isEqual:@"/"] || [string isEqual:@"~"]) && ((flags & NSEventModifierFlagCommand) == 0))
         {
             [_viewController showPathFieldWithString:string];
             return;

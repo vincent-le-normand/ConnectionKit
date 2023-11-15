@@ -6,7 +6,7 @@
 //
 //
 
-#import "CK2FileManager.h"
+#import <ConnectionKit/CK2FileManager.h>
 
 @class CK2Protocol;
 

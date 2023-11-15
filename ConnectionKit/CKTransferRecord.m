@@ -529,7 +529,7 @@ NSString *CKTransferRecordTransferDidFinishNotification = @"CKTransferRecordTran
         NSString *fileSize = [self.class formattedFileSize:(double)[self size]];
         NSString *unattributedDescription = [[NSString alloc] initWithFormat:@"%@ (%@)", [self name], fileSize];
         
-        NSDictionary *attributes = [NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]]
+		NSDictionary *attributes = [NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSControlSizeRegular]]
                                                                forKey:NSFontAttributeName];
         
         NSMutableAttributedString *description = [[NSMutableAttributedString alloc] initWithString:unattributedDescription attributes:attributes];

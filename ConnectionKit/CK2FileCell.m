@@ -119,7 +119,7 @@
     // First draw a label background color
     if (self.labelColor != nil) {
         [[self.labelColor colorWithAlphaComponent:0.2] set];
-        NSRectFillUsingOperation(cellFrame, NSCompositeSourceOver);
+		NSRectFillUsingOperation(cellFrame, NSCompositingOperationSourceOver);
     }
     
     if (!_isTextOnly)
@@ -128,7 +128,7 @@
         
         [self.image drawInRect:imageRect
                       fromRect:NSZeroRect
-                     operation:NSCompositeSourceOver
+					 operation:NSCompositingOperationSourceOver
                       fraction:1.0
                 respectFlipped:YES
                          hints:nil];
