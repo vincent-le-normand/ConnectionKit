@@ -701,51 +701,51 @@ callbacks:(CK2FileOperationCallbacks *)callbacks;
         }];
         
         
-        // Only need supply icon if protocol hasn't done so
-        NSImage *icon;
-        if (![url getResourceValue:&icon forKey:NSURLEffectiveIconKey error:NULL] || !icon)
-        {
-            // Fill in icon as best we can
-            [CK2FileManager setTemporaryResourceValueForKey:NSURLEffectiveIconKey inURL:url asBlock:^id{
-                
-                NSString *fileType = url.pathExtension;
-                if (path.pathComponents.count == 1)
-                {
-                    fileType = NSFileTypeForHFSTypeCode(kGenericFileServerIcon);
-                }
-                else if ([fileType isEqual:@"app"])
-                {
-                    fileType = NSFileTypeForHFSTypeCode(kGenericApplicationIcon);
-                }
-                else
-                {
-                    NSNumber *isDirectory;
-                    if (![url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:NULL] || isDirectory == nil)
-                    {
-                        isDirectory = @(CFURLHasDirectoryPath((CFURLRef)url));
-                    }
-                    
-                    // Guess based on file type
-                    if (isDirectory.boolValue)
-                    {
-                        if ([protocolClass isHomeDirectoryAtURL:url])
-                        {
-                            fileType = NSFileTypeForHFSTypeCode(kUserFolderIcon);
-                        }
-                        else
-                        {
-                            NSNumber *package;
-                            if (![url getResourceValue:&package forKey:NSURLIsPackageKey error:NULL] || !package.boolValue)
-                            {
-                                return [NSImage imageNamed:NSImageNameFolder];
-                            }
-                        }
-                    }
-                }
-                
-                return [[NSWorkspace sharedWorkspace] iconForFileType:fileType];
-            }];
-        }
+//        // Only need supply icon if protocol hasn't done so
+//        NSImage *icon;
+//        if (![url getResourceValue:&icon forKey:NSURLEffectiveIconKey error:NULL] || !icon)
+//        {
+//            // Fill in icon as best we can
+//            [CK2FileManager setTemporaryResourceValueForKey:NSURLEffectiveIconKey inURL:url asBlock:^id{
+//                
+//                NSString *fileType = url.pathExtension;
+//                if (path.pathComponents.count == 1)
+//                {
+//                    fileType = NSFileTypeForHFSTypeCode(kGenericFileServerIcon);
+//                }
+//                else if ([fileType isEqual:@"app"])
+//                {
+//                    fileType = NSFileTypeForHFSTypeCode(kGenericApplicationIcon);
+//                }
+//                else
+//                {
+//                    NSNumber *isDirectory;
+//                    if (![url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:NULL] || isDirectory == nil)
+//                    {
+//                        isDirectory = @(CFURLHasDirectoryPath((CFURLRef)url));
+//                    }
+//                    
+//                    // Guess based on file type
+//                    if (isDirectory.boolValue)
+//                    {
+//                        if ([protocolClass isHomeDirectoryAtURL:url])
+//                        {
+//                            fileType = NSFileTypeForHFSTypeCode(kUserFolderIcon);
+//                        }
+//                        else
+//                        {
+//                            NSNumber *package;
+//                            if (![url getResourceValue:&package forKey:NSURLIsPackageKey error:NULL] || !package.boolValue)
+//                            {
+//                                return [NSImage imageNamed:NSImageNameFolder];
+//                            }
+//                        }
+//                    }
+//                }
+//                
+//                return [[NSWorkspace sharedWorkspace] iconForFileType:fileType];
+//            }];
+//        }
     }
 }
 

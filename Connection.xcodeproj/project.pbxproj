@@ -134,11 +134,9 @@
 		27F394F6162C162900944F43 /* CK2SFTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F394F4162C162900944F43 /* CK2SFTPProtocol.m */; };
 		791E83050B0EDAC90060E5FC /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 791E83030B0EDAC90060E5FC /* error.png */; };
 		791E83060B0EDAC90060E5FC /* finished.png in Resources */ = {isa = PBXBuildFile; fileRef = 791E83040B0EDAC90060E5FC /* finished.png */; };
-		796DB30109F8BB1D0065897B /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 796DB2F609F8BB1D0065897B /* SecurityInterface.framework */; };
 		7978FC150B117D7C0048168B /* bookmark.tif in Resources */ = {isa = PBXBuildFile; fileRef = 7978FC140B117D7C0048168B /* bookmark.tif */; };
 		797CC8C709F861770063FF9B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 797CC8C509F861770063FF9B /* Localizable.strings */; };
 		798313C90B0D67E000F5078E /* CKTransferProgressCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 798313C70B0D67E000F5078E /* CKTransferProgressCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		798313CA0B0D67E000F5078E /* CKTransferProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 798313C80B0D67E000F5078E /* CKTransferProgressCell.m */; };
 		7983DF8E0B0C0FAC00F5078E /* CKTransferRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 7983DF8C0B0C0FAC00F5078E /* CKTransferRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7983DF8F0B0C0FAC00F5078E /* CKTransferRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7983DF8D0B0C0FAC00F5078E /* CKTransferRecord.m */; };
 		79CFD89509F704F400172CDD /* ConnectionKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 79CFD89409F704F400172CDD /* ConnectionKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -513,7 +511,6 @@
 				79CFD92F09F7080B00172CDD /* libz.dylib in Frameworks */,
 				79CFD93709F7084000172CDD /* Security.framework in Frameworks */,
 				79FB807209F74185006E7D11 /* Carbon.framework in Frameworks */,
-				796DB30109F8BB1D0065897B /* SecurityInterface.framework in Frameworks */,
 				79F9533D09FDC3A80041E345 /* ApplicationServices.framework in Frameworks */,
 				CEB6FA0B13A696B200C8059F /* libsasl2.dylib in Frameworks */,
 				220526F8165E9DE400A2BBC9 /* DAVKit.framework in Frameworks */,
@@ -1447,7 +1444,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7983DF8F0B0C0FAC00F5078E /* CKTransferRecord.m in Sources */,
-				798313CA0B0D67E000F5078E /* CKTransferProgressCell.m in Sources */,
 				27D03B431471787000FEA588 /* CKUploader.m in Sources */,
 				2743E80A1622E47600019979 /* CK2FileManager.m in Sources */,
 				27ADC5781AC0CD7D0085C7F7 /* CK2CurlTransferStackManager.m in Sources */,
@@ -1967,8 +1963,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
-					"-framework",
-					AppKit,
 					"-Xlinker",
 					"-U",
 					"-Xlinker",
@@ -2012,8 +2006,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
-					"-framework",
-					AppKit,
 					"-Xlinker",
 					"-U",
 					"-Xlinker",
