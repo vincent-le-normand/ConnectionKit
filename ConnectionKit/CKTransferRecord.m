@@ -31,8 +31,6 @@
 
 #import "CK2FileOperation.h"
 
-#import <AppKit/AppKit.h>   // for NSColor
-
 
 NSString *CKTransferRecordTransferDidBeginNotification = @"CKTransferRecordTransferDidBeginNotification";
 NSString *CKTransferRecordTransferDidFinishNotification = @"CKTransferRecordTransferDidFinishNotification";
@@ -522,30 +520,30 @@ NSString *CKTransferRecordTransferDidFinishNotification = @"CKTransferRecordTran
 {
     NSDictionary *result = [self nameWithProgress];
     
-    // Directories should not display their size info
-    if (self.uploadOperation && [[self contents] count] == 0)
-    {
-        // Calculate the size of the transfer in a user-friendly manner
-        NSString *fileSize = [self.class formattedFileSize:(double)[self size]];
-        NSString *unattributedDescription = [[NSString alloc] initWithFormat:@"%@ (%@)", [self name], fileSize];
-        
-		NSDictionary *attributes = [NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSControlSizeRegular]]
-                                                               forKey:NSFontAttributeName];
-        
-        NSMutableAttributedString *description = [[NSMutableAttributedString alloc] initWithString:unattributedDescription attributes:attributes];
-        [unattributedDescription release];
-        
-        // Make the size info in grey
-        [description addAttribute:NSForegroundColorAttributeName
-                            value:[NSColor grayColor]
-                            range:NSMakeRange([[self name] length] + 1, [fileSize length] + 2)];
-        
-        NSMutableDictionary *mutable = [result mutableCopy];
-        [mutable setObject:description forKey:@"name"];
-        result = [mutable autorelease];
-        
-        [description release];
-    }
+//    // Directories should not display their size info
+//    if (self.uploadOperation && [[self contents] count] == 0)
+//    {
+//        // Calculate the size of the transfer in a user-friendly manner
+//        NSString *fileSize = [self.class formattedFileSize:(double)[self size]];
+//        NSString *unattributedDescription = [[NSString alloc] initWithFormat:@"%@ (%@)", [self name], fileSize];
+//        
+//		NSDictionary *attributes = [NSDictionary dictionaryWithObject:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSControlSizeRegular]]
+//                                                               forKey:NSFontAttributeName];
+//        
+//        NSMutableAttributedString *description = [[NSMutableAttributedString alloc] initWithString:unattributedDescription attributes:attributes];
+//        [unattributedDescription release];
+//        
+//        // Make the size info in grey
+//        [description addAttribute:NSForegroundColorAttributeName
+//                            value:[NSColor grayColor]
+//                            range:NSMakeRange([[self name] length] + 1, [fileSize length] + 2)];
+//        
+//        NSMutableDictionary *mutable = [result mutableCopy];
+//        [mutable setObject:description forKey:@"name"];
+//        result = [mutable autorelease];
+//        
+//        [description release];
+//    }
     
     return result;
 }
